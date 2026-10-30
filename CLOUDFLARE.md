@@ -1,50 +1,45 @@
 # GitHub → Cloudflare Pages 持续发布
 
-当前部署文件已在 `dist/` 中，运行时使用随站点提供的 Three.js 文件，无需服务端。
+项目为静态网站，发布文件位于 `dist/`，无需后端服务。
 
-## 首次连接
+## 创建自己的部署
 
-1. 将项目放到自己的 GitHub 私有仓库，保留 `dist/`、`tests/`、`package.json`、锁文件、`.node-version` 和 `wrangler.toml`。不要上传 `node_modules/`、`qa/`、凭据或本地作品。
-2. 在 Cloudflare 的 Workers & Pages 中创建 **Pages** 项目，选择连接 GitHub 仓库。不要误选需要 Worker 入口文件的部署方式。
-3. 仅授权 Cloudflare 访问这个仓库。
-4. 配置以下参数：
+以下步骤仅适用于项目许可允许的用途；商业使用须另行获得授权。
+
+1. Fork 本仓库，或将代码导入自己的 GitHub 仓库。
+2. 在 Cloudflare 的 Workers & Pages 中创建 Pages 项目，连接自己的 GitHub 仓库。
+3. 使用以下构建设置：
 
 | 项目 | 值 |
 | --- | --- |
-| 生产分支 | `main`（如仓库使用其他主分支，选择实际分支） |
+| 生产分支 | `main` |
 | 框架 | `None` |
 | 项目根目录 | 仓库根目录 |
 | 构建命令 | `npm run build` |
 | 发布目录 | `dist` |
-| Node.js | `22`（`.node-version` 已指定） |
+| Node.js | `22` 或更高版本 |
 
-`build` 运行现有测试，失败会阻止本次更新上线；网站文件无需编译。项目名默认 `bead-studio`，可按账号中可用名称调整 `wrangler.toml`。
+构建命令运行自动检查；检查失败时不会发布该次更新。项目名和网址由你的 Cloudflare 账号配置决定，可按需修改 `wrangler.toml` 中的 `name`。
 
-## 发布范围
+## 持续更新
 
-目前 ChatGPT Site 保持私有。GitHub 私有仓库不代表 Cloudflare 网站也私有：首次部署前必须确认网站访问范围。如继续私有，需配置 Cloudflare Access 并检查生产及预览地址的访问限制，完成前不要发布。不要修改当前 `.openai/hosting.json` 中的站点身份。
+在 GitHub 中提交或合并到生产分支后，Cloudflare 会自动检查和部署。以控制台的最终部署状态为准。
 
-## 日常更新
+发布前运行 `npm test`。不要提交账号凭据、`.env`、本地作品、浏览器数据或个人控制台地址。GitHub 仓库可见性与网站访问权限分别管理。
 
-本地修改后运行 `npm test`，提交并推送生产分支；Cloudflare 自动运行检查并发布。功能分支可用于预览，预览访问范围也需与发布目标一致。每次以 Cloudflare 部署结果及页面验证为准。
+如果复用首页，请替换演示视频、封面和品牌素材，更新其中的网址；这些素材不属于软件许可证的授权范围。
 
 ## 作品迁移
 
-浏览器存储按网址隔离，旧网址中的作品和照图进度不会自动出现在新网址。先在旧站导出 JSON，再到新站导入。保留原站，确认新站的转换、编辑、3D、照图、保存和导出正常后再考虑切换域名。
+浏览器存储按网址隔离。更换域名、设备或浏览器前，在旧网址导出作品 JSON，再到新网址导入。原图与撤销历史不随作品副本保存。
 
-## 项目连接
-
-GitHub 私有仓库：https://github.com/fire-huang/bead-studio 。Cloudflare GitHub 应用仅授权此仓库。首次迁移通过 GitHub 网页上传源码；本机命令行尚未登录 GitHub，本地历史与该仓库的首次上传历史独立，后续使用命令行前应先登录并同步，不能强制覆盖远端。
-
-Cloudflare Pages 项目：`bead-studio`；生产分支：`main`。2026-10-30 已按用户确认公开发布，GitHub 仓库保持私有。
+## 项目在线演示
 
 - 首页：https://bead-studio-5xr.pages.dev/
 - 工作台：https://bead-studio-5xr.pages.dev/studio
-- 控制台：https://dash.cloudflare.com/a5205ee938ccffa08b3fa9fc2fc88b7e/pages/view/bead-studio
 
-首次线上构建通过全部 17 项检查，并已验证首页、首次介绍、3D 预览、图片转换和照图模式加载正常。后续更新以控制台的最新构建结果为准。
+## 官方文档
 
-官方参考：
-- https://developers.cloudflare.com/pages/get-started/git-integration/
-- https://developers.cloudflare.com/pages/framework-guides/deploy-anything/
-- https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+- [Git 集成](https://developers.cloudflare.com/pages/get-started/git-integration/)
+- [静态网站部署](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
+- [Wrangler 配置](https://developers.cloudflare.com/pages/functions/wrangler-configuration/)

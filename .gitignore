@@ -2,3 +2,12 @@ node_modules/
 qa/
 *.tgz
 .DS_Store
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+.wrangler/
+.openai/
+*.pem
+*.key
