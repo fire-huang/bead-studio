@@ -32,9 +32,11 @@
 
 浏览器存储按网址隔离，旧网址中的作品和照图进度不会自动出现在新网址。先在旧站导出 JSON，再到新站导入。保留原站，确认新站的转换、编辑、3D、照图、保存和导出正常后再考虑切换域名。
 
-## 当前状态
+## 项目连接
 
-本地配置已准备；GitHub 仓库创建/推送、Cloudflare 仓库授权和首次部署尚未完成，需要登录相应账号后继续。
+GitHub 私有仓库：https://github.com/fire-huang/bead-studio 。Cloudflare GitHub 应用仅授权此仓库。首次迁移通过 GitHub 网页上传源码；本机命令行尚未登录 GitHub，本地历史与该仓库的首次上传历史独立，后续使用命令行前应先登录并同步，不能强制覆盖远端。
+
+Cloudflare 项目是否已部署、具体域名和构建结果，以账号控制台的部署记录为准。不要将仓库连接成功视为上线成功。
 
 官方参考：
 - https://developers.cloudflare.com/pages/get-started/git-integration/
