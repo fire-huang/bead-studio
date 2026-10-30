@@ -36,7 +36,13 @@
 
 GitHub 私有仓库：https://github.com/fire-huang/bead-studio 。Cloudflare GitHub 应用仅授权此仓库。首次迁移通过 GitHub 网页上传源码；本机命令行尚未登录 GitHub，本地历史与该仓库的首次上传历史独立，后续使用命令行前应先登录并同步，不能强制覆盖远端。
 
-Cloudflare 项目是否已部署、具体域名和构建结果，以账号控制台的部署记录为准。不要将仓库连接成功视为上线成功。
+Cloudflare Pages 项目：`bead-studio`；生产分支：`main`。2026-10-30 已按用户确认公开发布，GitHub 仓库保持私有。
+
+- 首页：https://bead-studio-5xr.pages.dev/
+- 工作台：https://bead-studio-5xr.pages.dev/studio
+- 控制台：https://dash.cloudflare.com/a5205ee938ccffa08b3fa9fc2fc88b7e/pages/view/bead-studio
+
+首次线上构建通过全部 17 项检查，并已验证首页、首次介绍、3D 预览、图片转换和照图模式加载正常。后续更新以控制台的最新构建结果为准。
 
 官方参考：
 - https://developers.cloudflare.com/pages/get-started/git-integration/
