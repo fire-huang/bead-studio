@@ -1,0 +1,11 @@
+// 使用感知色差选择色卡子集，让小面积但差异明显的轮廓色也有机会保留。
+export function lab(rgb){const a=rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4});let x=(a[0]*.4124564+a[1]*.3575761+a[2]*.1804375)/.95047,y=a[0]*.2126729+a[1]*.7151522+a[2]*.072175,z=(a[0]*.0193339+a[1]*.119192+a[2]*.9503041)/1.08883;const f=t=>t>.008856?Math.cbrt(t):7.787*t+16/116;x=f(x);y=f(y);z=f(z);return [116*y-16,500*(x-y),200*(y-z)]}
+const dist=(a,b)=>(a[0]-b[0])**2+(a[1]-b[1])**2+(a[2]-b[2])**2;
+export function dimensions(n,sw,sh,square){let w=n,h=square?n:Math.max(1,Math.round(n*sh/sw));if(h>256){w=Math.max(1,Math.round(w*256/h));h=256}return {w,h}}
+export function quantize({pixels,w,h,palette,limit,removeBg,detail}){const colors=palette.map(p=>lab([1,3,5].map(i=>parseInt(p.hex.slice(i,i+2),16)))),labs=[],base=[],hist=Array(colors.length).fill(0),cache=new Map();
+for(let i=0;i<w*h;i++){let offset=i*4,c=[pixels[offset],pixels[offset+1],pixels[offset+2]];if(pixels[offset+3]<128||(removeBg&&c.every(v=>v>240))){labs.push(null);base.push(-1);continue}
+if(detail){const x=i%w,y=Math.floor(i/w);if(x>0&&x<w-1&&y>0&&y<h-1){const neighbors=[i-1,i+1,i-w,i+w];c=c.map((v,k)=>Math.max(0,Math.min(255,v+.45*(v-neighbors.reduce((s,j)=>s+pixels[j*4+k],0)/4))))}}
+const key=c.map(v=>Math.round(v)).join(',');let result=cache.get(key);if(!result){const l=lab(c);let best=0,d=Infinity;colors.forEach((p,j)=>{let e=dist(p,l);if(e<d){best=j;d=e}});result={l,best};cache.set(key,result)}labs.push(result.l);base.push(result.best);hist[result.best]++}
+let used=hist.map((n,i)=>i).filter(i=>hist[i]);if(!used.length)return Array(w*h).fill(-1);let chosen=[used.reduce((a,b)=>hist[a]>=hist[b]?a:b)];const distances=colors.map(a=>colors.map(b=>dist(a,b))),errors=colors.map((_,i)=>distances[i][chosen[0]]);while(chosen.length<Math.min(limit,used.length)){let best=-1,gain=-1;for(let candidate of used){if(chosen.includes(candidate))continue;let improvement=0;for(let i of used)improvement+=hist[i]*Math.max(0,errors[i]-distances[i][candidate]);if(improvement>gain){gain=improvement;best=candidate}}chosen.push(best);for(let i of used)errors[i]=Math.min(errors[i],distances[i][best])}
+
+return labs.map(l=>{if(!l)return -1;let best=chosen[0],d=Infinity;for(let i of chosen){let e=dist(l,colors[i]);if(e<d){best=i;d=e}}return best})}

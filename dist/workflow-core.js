@@ -1,0 +1,3 @@
+export function paletteIndices(raw,palette){if(!raw.trim())return palette.map((_,i)=>i);const ids=[...new Set(raw.split(/[,，\s]+/).filter(Boolean).map(id=>id.toLowerCase()))];const indices=ids.map(id=>palette.findIndex(p=>p.id.toLowerCase()===id));if(!indices.length||indices.includes(-1))throw Error('限定色号中有未找到的颜色，请核对当前色卡');return indices}
+export function regionUsage(cells,palette,w,x0,y0,cw,ch){const numbers=Array(palette.length).fill(0);for(let y=y0;y<y0+ch;y++)for(let x=x0;x<x0+cw;x++){const v=cells[y*w+x];if(v>=0)numbers[v]++}return palette.map((p,i)=>({...p,count:numbers[i]})).filter(p=>p.count)}
+export function validRows(rows,h){return Array.isArray(rows)?[...new Set(rows.filter(i=>Number.isInteger(i)&&i>=0&&i<h))]:[]}
