@@ -1,3 +1,69 @@
 .language-control{display:inline-flex;align-items:center;flex-shrink:0}.language-switch{font:inherit;font-size:12px;color:#eee;background:#252525;border:1px solid #555;border-radius:8px;padding:8px 10px;min-height:36px;cursor:pointer;width:auto;margin:0}.language-switch:focus-visible,.contact-email:focus-visible{outline:2px solid #f2a084;outline-offset:4px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.contact-email{color:inherit;text-decoration:none;font-size:12px;overflow-wrap:anywhere}.contact-email:hover{text-decoration:underline}body>footer{flex-wrap:wrap;gap:16px}html[lang=en] .hero h1{font-size:clamp(42px,5.1vw,76px);letter-spacing:-.05em}html[lang=en] .hero-definition{font-size:22px}html[lang=en] .workspace .tabs button{white-space:nowrap}html[lang=en] aside h1{font-size:34px}header nav{flex-wrap:wrap}@media(max-width:760px){.nav-shell .language-control{margin-left:auto}.nav-shell{gap:10px}.nav-shell>.primary{display:none}header .language-switch{max-width:116px}html[lang=en] .canvas-top{flex-wrap:wrap;gap:12px}html[lang=en] .hero h1{font-size:46px}.contact-email{font-size:11px}}
 
 html[lang=en] .row-suffix{display:none}
+/* Shared navigation: compact controls, consistent height and clear grouping. */
+header .language-control{position:relative;gap:8px;margin:0;min-width:0;height:38px;color:#9f9f9a}
+header .language-control>svg{position:absolute;left:11px;pointer-events:none}
+header .language-switch{height:38px;min-height:38px;width:128px;padding:0 24px 0 34px;font-size:12px;border:1px solid #383838;border-radius:9px;background-color:#202020;color:#cdcdca;line-height:normal}
+header .language-switch:hover{border-color:#64645e;background-color:#272727}
+header nav{align-items:center;flex-wrap:nowrap}
+header .nav-contact{font:inherit;white-space:nowrap;background:none;border:0;box-shadow:none;color:#b4b4af;cursor:pointer;padding:8px 0;border-radius:0}
+header .nav-contact:hover{color:#f4f4ef;background:none}
+.nav-shell{gap:20px;padding:14px 24px;min-height:76px}
+.nav-shell .brand{flex-shrink:0;margin-right:auto}
+.nav-shell nav{gap:clamp(18px,2vw,30px);margin:0 12px 0 0;white-space:nowrap}
+.nav-shell nav a,.nav-shell .nav-contact{font-size:13px}
+.nav-shell>.primary{min-height:38px;padding:8px 16px;font-size:13px;gap:12px}
+.studio-header{height:auto;min-height:76px;gap:24px;padding:14px 28px}
+.studio-header>.brand{flex-shrink:0;white-space:nowrap}
+.studio-header>span{white-space:nowrap}
+.studio-header nav{gap:10px;margin-left:auto}
+.studio-header nav>button{min-height:38px;height:38px;padding:8px 13px;white-space:nowrap;font-size:12px}
+.studio-header nav>.nav-contact{padding:8px}
+.studio-header .home-link{white-space:nowrap;margin:0 4px;font-size:12px}
+.contact-dialog{box-sizing:border-box;width:min(480px,calc(100vw - 40px));max-width:480px;max-height:calc(100dvh - 40px);overflow:auto;padding:36px;margin:auto;border:1px solid #41413e;border-radius:22px;background:#20201f;color:#efefea;box-shadow:0 32px 120px #0008}
+.contact-dialog::backdrop{background:#080808a8;backdrop-filter:blur(12px)}
+.contact-dialog .contact-close{position:absolute;right:18px;top:18px;width:32px;height:32px;padding:0;background:#ffffff06;color:#aaa9a3;border:1px solid #3d3d38;border-radius:50%;font-size:23px;line-height:1;cursor:pointer}
+.contact-dialog .contact-close:hover{color:white;background:#ffffff10}
+.contact-icon{width:48px;height:48px;display:grid;place-items:center;border:1px solid #704a3d;background:#dc725414;color:#e69a7e;border-radius:14px;margin-bottom:24px}.contact-icon svg{width:25px;height:25px}
+.contact-dialog .contact-kicker{font-size:11px;letter-spacing:1.5px;color:#d39279;margin:0 0 12px;line-height:1.5}
+.contact-dialog h2{font-size:27px;line-height:1.45;letter-spacing:-.6px;font-weight:500;margin:0;text-wrap:pretty}
+.contact-dialog #contactDescription{margin:16px 0 26px;font-size:13px;line-height:1.9;color:#aaa9a2}
+.contact-address{background:#181818;border:1px solid #363632;border-radius:12px;padding:17px 18px;display:flex;flex-direction:column;gap:8px}
+.contact-address>span{font-size:10px;color:#888880;letter-spacing:1.5px}
+.contact-address>a{font-size:18px;letter-spacing:.2px;line-height:1.5;color:#e9e7dd;text-decoration:none;overflow-wrap:anywhere}
+.contact-address>a:hover{text-decoration:underline;text-underline-offset:4px}
+.contact-actions{display:flex;gap:12px;margin-top:20px}
+.contact-actions>button,.contact-actions>a{flex:1;display:flex;align-items:center;justify-content:center;gap:12px;min-height:44px;border-radius:9px;font:inherit;font-size:13px;font-weight:500;text-decoration:none;cursor:pointer;transition:background .2s}
+.contact-dialog .contact-copy{background:#2c2c29;border:1px solid #45453e;color:#d3d2c8}.contact-dialog .contact-copy:hover{background:#353530}
+.contact-send{background:#dc7254;color:#171717;border:1px solid #dc7254}.contact-send:hover{background:#e98b70}
+.contact-dialog .contact-note{font-size:11px;line-height:1.6;color:#85857e;margin:16px 0 0;min-height:18px}
+@media(max-width:1200px){.studio-header>span{display:none}.nav-shell .brand>span{display:none}}
+@media(max-width:1100px){
+ .nav-shell{gap:12px}.nav-shell .brand{margin-right:auto}.nav-shell>.primary{display:inline-flex}.nav-shell .language-control{margin-left:0}
+ .nav-shell .menu-toggle{display:flex;position:relative;z-index:22;order:4;flex-direction:column;justify-content:center;gap:6px;width:32px;height:38px;padding:4px}
+ .nav-shell .menu-toggle>span{display:block;width:20px;height:1px;background:#dcdcd3}
+ .nav-shell nav{display:none}
+ .nav-shell.menu-open nav{display:flex;position:fixed;inset:-20px -32px auto;min-height:100dvh;background:#181818fa;backdrop-filter:blur(20px);z-index:20;flex-direction:column;align-items:flex-start;justify-content:center;gap:28px;padding:80px 48px;margin:0}
+ .nav-shell.menu-open nav>a,.nav-shell.menu-open nav>.nav-contact{display:block;font-size:24px;line-height:32px;color:#deded6}
+ .nav-shell .brand,.nav-shell .language-control,.nav-shell>.primary{position:relative;z-index:22}
+ .nav-shell.menu-open .menu-toggle>span:first-child{transform:translateY(3.5px) rotate(45deg)}.nav-shell.menu-open .menu-toggle>span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+ body.menu-open{overflow:hidden}
+}
+@media(max-width:760px){
+ .studio-header{align-items:center;flex-wrap:wrap;gap:12px;padding:14px 16px}.studio-header>.brand{font-size:20px}.studio-header nav{flex-wrap:wrap;justify-content:flex-end;gap:8px;flex:1}
+ .studio-header .brand small{display:none}.studio-header nav>.nav-contact{font-size:12px;padding:8px 4px}.studio-header .language-switch{width:120px;max-width:none}
+ .studio-header .home-link{display:none}.studio-header nav>button:not(.nav-contact){font-size:11px;padding:8px 10px}
+ .nav-shell{padding:12px 16px;min-height:66px}.nav-shell>.primary{display:none}.nav-shell .language-control{margin-left:0}.nav-shell .language-switch{width:120px;max-width:none}
+ .nav-shell.menu-open nav{inset:-16px -24px auto;padding:80px 32px}
+}
+@media(max-width:480px){.studio-header nav{flex-basis:100%;justify-content:flex-start}.studio-header{gap:8px}.studio-header nav>.language-control{margin-right:auto}.studio-header nav>.nav-contact{margin-right:4px}.contact-dialog{padding:28px 24px}.contact-dialog h2{font-size:24px}.contact-address>a{font-size:16px}}
+@media(max-width:480px){
+ .studio-header{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 8px;padding:12px 16px}
+ .studio-header>.brand{grid-row:1;grid-column:1;margin:0;font-size:18px}
+ .studio-header nav{display:contents}
+ .studio-header nav>.language-control{grid-row:1;grid-column:2/4;justify-self:end;margin:0}
+ .studio-header nav>.nav-contact{grid-row:1;grid-column:4;margin:0;padding:8px 0;font-size:11px}
+ .studio-header #library{grid-row:2;grid-column:1}.studio-header #saveCopy{grid-row:2;grid-column:2}.studio-header #save{grid-row:2;grid-column:3}.studio-header #export{grid-row:2;grid-column:4}
+ .studio-header nav>button:not(.nav-contact){width:100%;font-size:10px;padding:8px 3px}
+}

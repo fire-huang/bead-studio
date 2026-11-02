@@ -14,8 +14,8 @@ document.querySelectorAll('[data-preview]').forEach(button=>button.addEventListe
 const menuToggle=$('menuToggle'),shell=document.querySelector('.nav-shell');
 function closeMenu(){shell.classList.remove('menu-open');document.body.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','打开导航');document.querySelector('main').inert=false;document.querySelector('footer').inert=false}
 menuToggle.onclick=()=>{const open=shell.classList.toggle('menu-open');document.body.classList.toggle('menu-open',open);menuToggle.setAttribute('aria-expanded',String(open));menuToggle.setAttribute('aria-label',open?'关闭导航':'打开导航');document.querySelector('main').inert=open;document.querySelector('footer').inert=open;if(open)document.querySelector('#mainNav a').focus()};
-document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',closeMenu));document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+document.querySelectorAll('#mainNav a,#mainNav [data-contact-open]').forEach(a=>a.addEventListener('click',closeMenu));document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduce&&'IntersectionObserver' in window){const reveal=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-revealed');reveal.unobserve(e.target)}})},{threshold:.12});document.querySelectorAll('.section-heading,.benefits article,.process li,.questions article,.statement,.closing').forEach((el,i)=>{el.classList.add('reveal');el.style.setProperty('--reveal-delay',(i%3)*60+'ms');reveal.observe(el)})}
 
-matchMedia('(min-width: 601px)').addEventListener('change',e=>{if(e.matches)closeMenu()});
+matchMedia('(min-width: 1101px)').addEventListener('change',e=>{if(e.matches)closeMenu()});

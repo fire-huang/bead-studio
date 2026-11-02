@@ -1,4 +1,4 @@
-import {dictionary} from './i18n-dictionary.js';
+import {dictionary} from './i18n-dictionary.js?v=20261102-contact';
 const storageKey='bead-studio-language';
 let language='zh-CN';
 try{if(localStorage.getItem(storageKey)==='en')language='en'}catch{}

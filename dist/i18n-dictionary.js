@@ -1,4 +1,15 @@
 export const dictionary = {
+  "联系豆造": "Get in touch",
+  "交流想法，一起把豆造变得更好。": "Share an idea. Help make Bead Studio better.",
+  "产品建议、使用问题或商业授权，欢迎通过邮件联系。": "For feedback, support or commercial licensing, send us an email.",
+  "联系邮箱": "EMAIL",
+  "复制邮箱": "Copy email",
+  "已复制": "Copied",
+  "发送邮件": "Send email",
+  "关闭联系窗口": "Close contact dialog",
+  "点击将打开你的默认邮件应用。": "Opens your default email app.",
+  "复制失败，请手动选择邮箱。": "Could not copy. Please select the email address manually.",
+
   "当前行": "Current row",
   "跳到主要内容": "Skip to content",
   "豆造首页": "Bead Studio home",
