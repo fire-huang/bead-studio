@@ -67,3 +67,6 @@ header .nav-contact:hover{color:#f4f4ef;background:none}
  .studio-header #library{grid-row:2;grid-column:1}.studio-header #saveCopy{grid-row:2;grid-column:2}.studio-header #save{grid-row:2;grid-column:3}.studio-header #export{grid-row:2;grid-column:4}
  .studio-header nav>button:not(.nav-contact){width:100%;font-size:10px;padding:8px 3px}
 }
+/* Keep the language chevron clear of the control edge on every platform. */
+header .language-control::after{content:'';position:absolute;right:15px;top:50%;width:7px;height:7px;border-right:1.5px solid #b6b6b0;border-bottom:1.5px solid #b6b6b0;transform:translateY(-70%) rotate(45deg);pointer-events:none}
+header .language-switch{appearance:none;-webkit-appearance:none;padding-right:34px;background-image:none}
